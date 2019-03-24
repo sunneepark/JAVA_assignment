@@ -15,6 +15,7 @@ public class Source2 {
 			System.out.println("몇 항까지 출력하겠습니까: ");
 			int n=scanner.nextInt();
 			
+			if(n==0) System.out.println("0번째 항은 존재하지 않습니다");
 			for(i=2;i<=n+1;i++) { //n이 1일 때에도 출력이 되게 끔 n+1 까지 출력한다.
 				System.out.print(a+" ");
 				c=a+b; //변수 a와 b를 더하여 변수 c에 대입
