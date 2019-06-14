@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 class NegativeException extends Exception{
 	public NegativeException() {
-		super("占쏙옙占쏙옙占� 占쏙옙占� 占쏙옙占쏙옙 0占쏙옙 占쏙옙占쏙옙占쏙옙 占쌉력듸옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+		super("행렬의 행과 열은 0과 음수는 입력될 수 없습니다.");
 	}
 }  
 public class Matrix {
@@ -26,18 +26,18 @@ public class Matrix {
 		
 		array_number++;
 		
-		System.out.println("占쏙옙占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙 占쏙옙占쏙옙占쏙옙 "+array_number+"占쏙옙 占쌉니댐옙.");
+		System.out.println("현재까지 생성된 행렬의 총 개수는 "+array_number+"개 입니다.");
 	}
-	public void initInput(){ //占쌉력뱄옙占쏙옙占썽서 占십깍옙화 占싹댐옙 占쌨소듸옙
-		boolean doInput=true; //占쌉뤄옙 占쌨아억옙 占실댐옙 占쏙옙占쏙옙
+	public void initInput(){ //행렬 요소 입력받는 함수
+		boolean doInput=true; //행과 열 입력 가능 여부 플래그
 		Scanner sc=new Scanner(System.in);
 		int Row=0; int Col=0;
 		while(doInput) {
 			try {
-				System.out.println("占쏙옙占쏙옙占� 占쏙옙占쏙옙  占쌉뤄옙占싹쇽옙占쏙옙.");
+				System.out.println("행렬의 행을 입력하세요.");
 				Row=inputNum(sc.nextInt());
 
-				System.out.println("占쏙옙占쏙옙占� 占쏙옙占쏙옙  占쌉뤄옙占싹쇽옙占쏙옙.");
+				System.out.println("행렬의 열을 입력하세요.");
 				Col=inputNum(sc.nextInt());
 			}catch(NegativeException e) {
 				System.out.println(e);
@@ -50,21 +50,20 @@ public class Matrix {
 		this.setCol(Col);
 		this.array=new int[Row][Col];
 		array_number++;
-		System.out.println("占쏙옙占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占쏙옙 占쏙옙占쏙옙占쏙옙 "+array_number+"占쏙옙 占쌉니댐옙.");
+		System.out.println("현재까지 생성된 행렬의 총 개수는 "+array_number+"개 입니다.");
 		
-		System.out.println("占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌉뤄옙占싹쇽옙占쏙옙.");
+		System.out.println("행렬 내부의 값을 입력해주세요.");
 		int i,j,num = 0;
 		for(i=0;i<this.getRow();i++) {
 			for(j=0;j<this.getCol();j++) {
 				try {
-					System.out.println((i+1)+"占쏙옙"+(j+1)+"占쏙옙占쏙옙 占쏙옙占쏙옙 占쌉뤄옙占쏙옙占쌍쇽옙占쏙옙 : ");
+					System.out.println((i+1)+"행"+(j+1)+"열의 값을 입력해주세요 : ");
 					num=sc.nextInt();
 					this.setArr(i, j, num);
 				}catch (InputMismatchException e){
-					System.out.println(e+": 占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占승몌옙 占쏙옙占쏙옙占쌌니댐옙.");
+					System.out.println(e+": 행렬 내부의 값은 정수 형태만 가능합니다.");
 					sc.nextLine();
 					--j;
-				    //e.printStackTrace(); //占쏙옙占쏙옙 占쏙옙占�(占쏙옙占쏙옙占� 占쏙옙占쏙옙占쏙옙占쏙옙)
 				}
 			}
 		}
@@ -100,10 +99,10 @@ public class Matrix {
 		this.array[x][y]=result;
 	}
 	
-	/**占쏙옙치占쏙옙占�, 占쏙옙占� 占쏙옙 占쏙옙占싹댐옙 占쌨소듸옙**/
+	/**matrix transpose & summation**/
 	public static Matrix Transpose(Matrix A) {
 		if(A.getRow() * A.getCol() == 0) {
-			System.out.println("占쏙옙치占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+			System.out.println("전치행렬을 구할  수 없습니다.");
 			return new Matrix();
 		}
 		
@@ -119,17 +118,18 @@ public class Matrix {
 	public static Matrix Summation(Matrix A,Matrix B) {
 		try {
 			if(A.getRow()/B.getRow() != 1 && A.getCol()/B.getCol() != 1) {
-				System.out.println("占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+				System.out.println("행렬의 합을 구할 수 없습니다.");
 				return new Matrix();
 			}
 		}catch(ArithmeticException e) {
-			System.out.println("占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+			System.out.println("산술 연산 오류입니다.");
 			return new Matrix();
 		}
 		
 		
 		int x=A.getRow();
 		int y=A.getCol();
+		
 		Matrix m = new Matrix(x,y);
 		for(int i=0;i<x;i++)
 			for(int j=0;j<y;j++)
@@ -138,10 +138,10 @@ public class Matrix {
 		return m;
 		
 	}
-	/**占쏙옙캅占� 占쏙옙占싹댐옙 占쌨소듸옙(占신곤옙占쏙옙占쏙옙占쏙옙 占쌨몌옙 占싹울옙 占쏙옙占쏙옙占싸듸옙)**/
+	/**matrix multiply (multiply constant & multiply matrix using overriding)**/
 	public static Matrix Multiply(Matrix A,int n) {
 		if(A.getRow() * A.getCol() == 0) {
-			System.out.println("占쏙옙占쏙옙占� 占쏙옙占쏙옙 占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+			System.out.println("행렬의 곱을 구할 수 없습니다.");
 			return new Matrix();
 		}
 		
@@ -156,12 +156,12 @@ public class Matrix {
 	}
 	public static Matrix Multiply(Matrix A,Matrix B) {
 		try {
-			if(A.getCol()/B.getRow() != 1) {
-				System.out.println("占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+			if(A.getCol()/B.getRow() != 1) { //mathching one's col and another's row
+				System.out.println("행렬의 곱을 구할 수 없습니다.");
 				return new Matrix();
 			}
 		}catch(ArithmeticException e) {
-			System.out.println("占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占싹댐옙.");
+			System.out.println("산술 연산이 불가능합니다.");
 			return new Matrix();
 		}
 		
@@ -181,7 +181,7 @@ public class Matrix {
 		}
 		return m;
 	}
-	/**占쏙옙占� 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙求占� 占쌨소듸옙**/
+	/** To print all element's of matrix**/
 	public boolean printMat() {
 		if(this.getRow() * this.getCol()==0)
 			return false;

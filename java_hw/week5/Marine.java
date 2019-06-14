@@ -4,8 +4,8 @@ public class Marine {
 	private int x;
 	private int y;
 	private int hp;
-	private static int weapon=6; //ï¿½ï¿½ï¿½Ý·ï¿½
-	private static int armor=1; //ï¿½ï¿½ï¿½ï¿½
+	private static int weapon=6; //°ø°Ý·Â
+	private static int armor=1; //¹æ¾î·Â
 	
 	public Marine() { 
 		this.x=0;
